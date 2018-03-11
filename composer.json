@@ -1,0 +1,19 @@
+{
+    "name": "frank_schroeder/fidelity_system",
+    "description": "Fidelity System",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "D4rkPh0en1x",
+            "email": "frank@datateam.lu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+     "psr-4": {
+     "": "src/"
+     }
+     }
+}
