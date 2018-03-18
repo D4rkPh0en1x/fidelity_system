@@ -26,10 +26,13 @@
   <h1>Welcome to the fidelity system - Alpha version</h1>
   <?php
 
+  session_start();
+
   require_once __DIR__.'/../vendor/autoload.php';
-  $configs = require __DIR__.'/../config/app.conf.php';
-  use Service\DBConnector;
-  DBConnector::setConfig($configs['db']);
+
+  $configs = require __DIR__. '/../config/app.conf.php';
+
+  Service\DBConnector::setConfig($configs['db']);
 
   $map = [
       '/login' => __DIR__ . '/../src/Controller/login.php',
@@ -45,8 +48,10 @@
       $url = '';
   }
 
-  if (array_key_exists($url, $map)) {
-      include $map[$url];
+  $urlPart = explode("?", $url);
+
+  if (array_key_exists($urlPart[0], $map)){
+      include $map[$urlPart[0]];
   }
 ?>
 
