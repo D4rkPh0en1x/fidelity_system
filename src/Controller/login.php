@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }
   if(empty($email_err) && empty($password_err)){
     $pdo = Service\DBConnector::getConnection();
-    $sql = "SELECT email, password FROM user WHERE email = :email";
+    $sql = "SELECT email, password, roles FROM user WHERE email = :email";
     if($stmt = $pdo->prepare($sql)){
       $stmt->bindParam(':email', $param_email, PDO::PARAM_STR);
       $param_email = trim($_POST["email"]);
@@ -23,10 +23,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt->rowCount() == 1){
           if($row = $stmt->fetch()){
             $db_password = $row['password'];
+            $db_roles = $row['roles'];
             if($hashed_password === $db_password){
               session_start();
               $_SESSION['email'] = $email;
+              if ($db_roles == 247) {
+              header("location: /index.php/account-admin");
+              } else {
               header("location: /index.php/account");
+              }
             } else{
               $password_err = 'The password you entered was not valid.';
             }

@@ -37,7 +37,9 @@
   $map = [
       '/login' => __DIR__ . '/../src/Controller/login.php',
       '' => __DIR__ . '/../src/Controller/login.php',
-      '/register' => __DIR__ . '/../src/Controller/register.php'
+      '/register' => __DIR__ . '/../src/Controller/register.php',
+      '/account' => __DIR__ . '/../src/Controller/account.php',
+      '/account-admin' => __DIR__ . '/../src/Controller/account-admin.php'
   ];
 
   $url = $_SERVER['REQUEST_URI'];
